@@ -4,12 +4,14 @@
 use core::panic::PanicInfo;
 mod vga_buffer;
 
+
 #[panic_handler] // as we dont have a standard lib, we have define how our code will panic 
-fn panic(_info: &PanicInfo) -> ! {
+fn panic(info: &PanicInfo) -> ! {
+    println!("{}", info);
     loop {}
 }
 
-static HELLO:&[u8] = b"Hello World!";
+//static HELLO:&[u8] = b"Hello World!";
 
 #[no_mangle] // rust will automatically add unique name to function in the binary, we can stop that by explicitly mentioning that we dont have to do that
 pub extern "C" fn _start() -> ! {
@@ -22,7 +24,15 @@ pub extern "C" fn _start() -> ! {
     //     }
     // }
 
-    vga_buffer::print_something();
+    // use core::fmt::Write;
+    // vga_buffer::WRITER.lock().write_str("hello again").unwrap();
+    // write!(vga_buffer::WRITER.lock(), ", some numbers : {} {}", 42, 33.2).unwrap();
+
+    //println!("Hello world {}, {}","!", 24);
+    println!("$micheal@titan>> whomai");
+    println!("micheal");
     loop {}
+   // panic!("here in main");
+   // loop {}
 }
 
