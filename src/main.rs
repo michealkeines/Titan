@@ -24,11 +24,13 @@ fn panic(info: &PanicInfo) -> ! {
 pub extern "C" fn _start() -> ! {
     println!("$micheal@titan>> whomai");
     println!("micheal");
+    titan_os::init();
 
+    x86_64::instructions::interrupts::int3();
     // This is the main method for custom test exe
     #[cfg(test)]
     test_main();
-
+    println!("past the breakpoint");
     loop {}
    // panic!("here in main");
    // loop {}
